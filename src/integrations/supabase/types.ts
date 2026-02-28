@@ -98,6 +98,8 @@ export type Database = {
           image_url: string | null
           is_active: boolean
           name: string
+          name_en: string
+          name_mn: string
           position_en: string
           position_mn: string
           sort_order: number
@@ -111,6 +113,8 @@ export type Database = {
           image_url?: string | null
           is_active?: boolean
           name: string
+          name_en?: string
+          name_mn?: string
           position_en?: string
           position_mn?: string
           sort_order?: number
@@ -124,6 +128,8 @@ export type Database = {
           image_url?: string | null
           is_active?: boolean
           name?: string
+          name_en?: string
+          name_mn?: string
           position_en?: string
           position_mn?: string
           sort_order?: number
