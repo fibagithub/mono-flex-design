@@ -7,6 +7,8 @@ import { useToast } from "@/hooks/use-toast";
 
 interface FormData {
   name: string;
+  name_mn: string;
+  name_en: string;
   position_mn: string;
   position_en: string;
   description_mn: string;
@@ -15,7 +17,7 @@ interface FormData {
   is_active: boolean;
 }
 
-const emptyForm: FormData = { name: "", position_mn: "", position_en: "", description_mn: "", description_en: "", sort_order: 0, is_active: true };
+const emptyForm: FormData = { name: "", name_mn: "", name_en: "", position_mn: "", position_en: "", description_mn: "", description_en: "", sort_order: 0, is_active: true };
 
 export default function AdminTeam() {
   const { lang } = useLang();
@@ -30,15 +32,16 @@ export default function AdminTeam() {
 
   const openEdit = (m: TeamMember) => {
     setEditing(m.id);
-    setForm({ name: m.name, position_mn: m.position_mn, position_en: m.position_en, description_mn: m.description_mn, description_en: m.description_en, sort_order: m.sort_order, is_active: m.is_active });
+    setForm({ name: m.name, name_mn: (m as any).name_mn || m.name, name_en: (m as any).name_en || m.name, position_mn: m.position_mn, position_en: m.position_en, description_mn: m.description_mn, description_en: m.description_en, sort_order: m.sort_order, is_active: m.is_active });
     setShowForm(true);
   };
 
   const handleSave = async () => {
+    const payload = { ...form, name: form.name_mn || form.name_en || form.name };
     if (editing) {
-      await supabase.from("team_members").update(form).eq("id", editing);
+      await supabase.from("team_members").update(payload).eq("id", editing);
     } else {
-      await supabase.from("team_members").insert(form);
+      await supabase.from("team_members").insert(payload);
     }
     setShowForm(false);
     toast({ title: lang === "mn" ? "Амжилттай" : "Saved" });
@@ -82,9 +85,15 @@ export default function AdminTeam() {
               <button onClick={() => setShowForm(false)}><X className="w-5 h-5" /></button>
             </div>
             <div className="space-y-3">
-              <div>
-                <label className="text-xs font-medium text-muted-foreground">{lang === "mn" ? "Нэр" : "Name"}</label>
-                <input value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-input bg-background text-sm" />
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground">{lang === "mn" ? "Нэр (MN)" : "Name (MN)"}</label>
+                  <input value={form.name_mn} onChange={e => setForm(f => ({ ...f, name_mn: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-input bg-background text-sm" />
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground">{lang === "mn" ? "Нэр (EN)" : "Name (EN)"}</label>
+                  <input value={form.name_en} onChange={e => setForm(f => ({ ...f, name_en: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-input bg-background text-sm" />
+                </div>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>

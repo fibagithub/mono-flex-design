@@ -4,6 +4,8 @@ import { supabase } from "@/integrations/supabase/client";
 export interface TeamMember {
   id: string;
   name: string;
+  name_mn: string;
+  name_en: string;
   position_mn: string;
   position_en: string;
   description_mn: string;

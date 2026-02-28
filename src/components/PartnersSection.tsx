@@ -38,7 +38,7 @@ export default function PartnersSection() {
           {doubled.map((partner, i) => (
             <div
               key={`${partner.id}-${i}`}
-              className="flex-shrink-0 mx-8 w-28 h-16 flex items-center justify-center grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
+              className="flex-shrink-0 mx-8 w-28 h-16 flex items-center justify-center"
             >
               {partner.logo_url ? (
                 <img
