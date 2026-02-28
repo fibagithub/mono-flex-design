@@ -1,19 +1,13 @@
 import { useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CreditCard, Store, ShieldCheck, Heart, Cpu, ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronUp } from "lucide-react";
 import { useLang } from "@/lib/language-context";
 import { translations, t } from "@/lib/translations";
 import { useServices } from "@/hooks/useServices";
 
-const defaultIcons = [CreditCard, Cpu, Store, ShieldCheck, Heart];
 
-const SERVICE_IMAGES = [
-  "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=340&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=340&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=340&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=340&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1639322537228-f710d846310a?w=600&h=340&fit=crop&q=80",
-];
+
+const FALLBACK_IMAGE = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=340&fit=crop&q=80";
 
 function ServiceCard({ service, index }: { service: any; index: number }) {
   const { lang } = useLang();
@@ -21,9 +15,8 @@ function ServiceCard({ service, index }: { service: any; index: number }) {
   const [parallax, setParallax] = useState({ x: 0, y: 0 });
   const cardRef = useRef<HTMLDivElement>(null);
 
-  const Icon = defaultIcons[index % defaultIcons.length];
   const desc = lang === "mn" ? service.description_mn : service.description_en;
-  const imgSrc = service.image_url || SERVICE_IMAGES[index % SERVICE_IMAGES.length];
+  const imgSrc = service.image_url || FALLBACK_IMAGE;
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!cardRef.current) return;
@@ -70,18 +63,9 @@ function ServiceCard({ service, index }: { service: any; index: number }) {
 
       {/* Content */}
       <div className="p-5 lg:p-6">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-            {service.icon_url ? (
-              <img src={service.icon_url} className="w-5 h-5 object-contain" alt="" />
-            ) : (
-              <Icon className="w-5 h-5 text-primary" />
-            )}
-          </div>
-          <h3 className="font-bold text-base text-foreground leading-tight">
-            {lang === "mn" ? service.name_mn : service.name_en}
-          </h3>
-        </div>
+        <h3 className="font-bold text-base text-foreground leading-tight mb-3">
+          {lang === "mn" ? service.name_mn : service.name_en}
+        </h3>
 
         <div className="text-sm text-muted-foreground leading-relaxed mb-4 text-justify">
           <AnimatePresence mode="wait">
