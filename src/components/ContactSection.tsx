@@ -109,7 +109,7 @@ export default function ContactSection() {
 
             <div className="rounded-xl overflow-hidden border border-border h-56 lg:h-72">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2675.0!2d106.9177!3d47.9184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d9693f0d1fba6e5%3A0x0!2sUlaanbaatar!5e0!3m2!1sen!2smn!4v1700000000000"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1337.5!2d106.8856!3d47.8864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d96ecb2e3cfe4f1%3A0x3d2c3b1e4f5a6b7c!2z0KXQsNC9LdCj0YPQuyDQtNKv0q_RgNGN0LMsIDE1LdGAINGF0L7RgNC-0L4sINKu0LnQu9C00LLRjdGALCDQkdC-0LPQtCDQttCw0LLQt9Cw0L0g0LTQsNC80LHQsCDQs9GD0LTQsNC80LYgMTIg0LHQsNC50YAsIDEg0YLQvtC-0YI!5e0!3m2!1smn!2smn!4v1700000000000"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CreditCard, Store, ShieldCheck, Heart, Cpu, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
+import { CreditCard, Store, ShieldCheck, Heart, Cpu, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/lib/language-context";
 import { translations, t } from "@/lib/translations";
 import { useServices } from "@/hooks/useServices";
@@ -41,8 +41,6 @@ export default function ServicesSection() {
             const Icon = defaultIcons[i % defaultIcons.length];
             const desc = lang === "mn" ? service.description_mn : service.description_en;
             const isExpanded = expanded === service.id;
-            const lines = desc.split(/[.။]/).filter(Boolean);
-            const preview = lines.slice(0, 2).join(". ") + (lines.length > 2 ? "." : "");
 
             return (
               <motion.div
@@ -62,15 +60,15 @@ export default function ServicesSection() {
                 </div>
                 <h3 className="font-bold text-base mb-2">{lang === "mn" ? service.name_mn : service.name_en}</h3>
 
-                <div className="text-sm text-muted-foreground leading-relaxed mb-3">
+                <div className="text-sm text-muted-foreground leading-relaxed mb-3 text-justify">
                   <AnimatePresence mode="wait">
                     {isExpanded ? (
                       <motion.p key="full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                         {desc}
                       </motion.p>
                     ) : (
-                      <motion.p key="preview" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                        {preview}
+                      <motion.p key="preview" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="line-clamp-3">
+                        {desc}
                       </motion.p>
                     )}
                   </AnimatePresence>

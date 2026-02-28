@@ -9,7 +9,6 @@ export default function PartnersSection() {
 
   if (loading || partners.length === 0) return null;
 
-  // Duplicate for seamless marquee
   const doubled = [...partners, ...partners];
 
   return (
@@ -31,18 +30,24 @@ export default function PartnersSection() {
         </motion.div>
       </div>
 
-      {/* Marquee */}
+      {/* Seamless marquee - no borders, standardized sizes */}
       <div className="relative">
-        <div className="flex animate-marquee">
+        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10" />
+        <div className="flex animate-marquee items-center">
           {doubled.map((partner, i) => (
             <div
               key={`${partner.id}-${i}`}
-              className="flex-shrink-0 mx-6 w-32 h-20 rounded-xl bg-background border border-border flex items-center justify-center p-3 hover:shadow-lg transition-shadow"
+              className="flex-shrink-0 mx-8 w-28 h-16 flex items-center justify-center grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
             >
               {partner.logo_url ? (
-                <img src={partner.logo_url} className="max-w-full max-h-full object-contain" alt={lang === "mn" ? partner.name_mn : partner.name_en} />
+                <img
+                  src={partner.logo_url}
+                  className="max-w-full max-h-full object-contain"
+                  alt={lang === "mn" ? partner.name_mn : partner.name_en}
+                />
               ) : (
-                <span className="text-xs font-medium text-muted-foreground text-center">
+                <span className="text-xs font-semibold text-muted-foreground text-center">
                   {lang === "mn" ? partner.name_mn : partner.name_en}
                 </span>
               )}
