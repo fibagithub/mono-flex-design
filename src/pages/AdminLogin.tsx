@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/language-context";
 import { translations, t } from "@/lib/translations";
@@ -8,23 +8,29 @@ import { motion } from "framer-motion";
 export default function AdminLogin() {
   const { lang } = useLang();
   const navigate = useNavigate();
-  const { signIn } = useAuth();
+  const { user, isAdmin, loading: authLoading, signIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  // Navigate when user becomes admin
+  useEffect(() => {
+    if (!authLoading && user && isAdmin) {
+      navigate("/admin", { replace: true });
+    }
+  }, [authLoading, user, isAdmin, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    setLoading(true);
+    setSubmitting(true);
     const { error: err } = await signIn(email, password);
     if (err) {
       setError(t(translations.admin.login.error, lang));
-      setLoading(false);
-    } else {
-      navigate("/admin");
+      setSubmitting(false);
     }
+    // Don't navigate here - let the useEffect handle it when isAdmin updates
   };
 
   return (
@@ -71,10 +77,10 @@ export default function AdminLogin() {
           </div>
           <button
             type="submit"
-            disabled={loading}
+            disabled={submitting}
             className="w-full px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm uppercase tracking-wider hover:bg-accent transition-colors disabled:opacity-60"
           >
-            {loading ? "..." : t(translations.admin.login.submit, lang)}
+            {submitting ? "..." : t(translations.admin.login.submit, lang)}
           </button>
         </form>
       </motion.div>
