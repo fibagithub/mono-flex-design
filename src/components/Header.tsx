@@ -4,7 +4,7 @@ import { useLang } from "@/lib/language-context";
 import { translations, t } from "@/lib/translations";
 import { motion, AnimatePresence } from "framer-motion";
 
-const navItems = ["services", "payment", "about", "team", "partners", "contact"] as const;
+const navItems = ["services", "partners", "payment", "about", "team", "contact"] as const;
 
 export default function Header() {
   const { lang, setLang } = useLang();
@@ -25,9 +25,7 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-xl shadow-sm border-b border-border"
-          : "bg-transparent"
+        scrolled ? "bg-background/80 backdrop-blur-xl shadow-sm border-b border-border" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between h-14 px-4 lg:px-8">
@@ -67,10 +65,7 @@ export default function Header() {
             </button>
           </div>
 
-          <button
-            className="md:hidden p-2 text-foreground"
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
+          <button className="md:hidden p-2 text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
