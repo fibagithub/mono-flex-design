@@ -20,13 +20,9 @@ export default function PartnersSection() {
           viewport={{ once: true }}
           className="text-center mb-10"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-3">
-            {t(translations.partners.title, lang)}
-          </h2>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-3">{t(translations.partners.title, lang)}</h2>
           <div className="h-1 w-16 gradient-line rounded-full mx-auto mb-3" />
-          <p className="text-muted-foreground text-sm">
-            {t(translations.partners.subtitle, lang)}
-          </p>
+          <p className="text-muted-foreground text-sm">{t(translations.partners.subtitle, lang)}</p>
         </motion.div>
       </div>
 
@@ -36,10 +32,7 @@ export default function PartnersSection() {
         <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10" />
         <div className="flex animate-marquee items-center">
           {doubled.map((partner, i) => (
-            <div
-              key={`${partner.id}-${i}`}
-              className="flex-shrink-0 mx-8 w-28 h-16 flex items-center justify-center"
-            >
+            <div key={`${partner.id}-${i}`} className="flex-shrink-0 mx-8 w-48 h-24 flex items-center justify-center">
               {partner.logo_url ? (
                 <img
                   src={partner.logo_url}
