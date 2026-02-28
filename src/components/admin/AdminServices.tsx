@@ -148,15 +148,15 @@ export default function AdminServices() {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      {s.icon_url ? (
-                        <img src={s.icon_url} className="w-8 h-8 rounded object-cover" alt="" />
+                      {s.image_url ? (
+                        <img src={s.image_url} className="w-12 h-8 rounded object-cover" alt="" />
                       ) : (
-                        <div className="w-8 h-8 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">—</div>
+                        <div className="w-12 h-8 rounded bg-muted flex items-center justify-center text-xs text-muted-foreground">—</div>
                       )}
                       <label className="cursor-pointer text-xs text-primary hover:underline">
                         <Upload className="w-3 h-3 inline mr-1" />
                         {uploading ? "..." : "Upload"}
-                        <input type="file" accept="image/*" className="hidden" onChange={e => { if (e.target.files?.[0]) handleImageUpload(s.id, e.target.files[0], "icon_url"); }} />
+                        <input type="file" accept="image/*" className="hidden" onChange={e => { if (e.target.files?.[0]) handleImageUpload(s.id, e.target.files[0], "image_url"); }} />
                       </label>
                     </div>
                   </td>
