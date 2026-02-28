@@ -7,6 +7,7 @@ import ServicesSection from "@/components/ServicesSection";
 import PaymentGatewaySection from "@/components/PaymentGatewaySection";
 import AboutSection from "@/components/AboutSection";
 import TeamSection from "@/components/TeamSection";
+import PartnersSection from "@/components/PartnersSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
@@ -26,7 +27,6 @@ const Index = () => {
       document.head.appendChild(meta);
     }
 
-    // OG tags
     const setOg = (prop: string, content: string) => {
       let el = document.querySelector(`meta[property="${prop}"]`);
       if (!el) {
@@ -49,6 +49,7 @@ const Index = () => {
       <PaymentGatewaySection />
       <AboutSection />
       <TeamSection />
+      <PartnersSection />
       <ContactSection />
       <Footer />
     </div>
