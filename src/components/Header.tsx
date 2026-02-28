@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useLang } from "@/lib/language-context";
 import { translations, t } from "@/lib/translations";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "@/assets/logo.png";
 
 const navItems = ["services", "partners", "payment", "about", "team", "contact"] as const;
 
@@ -30,6 +31,7 @@ export default function Header() {
     >
       <div className="container mx-auto flex items-center justify-between h-14 px-4 lg:px-8">
         <a href="#" className="flex items-center gap-2 font-bold text-xl tracking-tight">
+          <img src={logo} alt="NEGDi logo" className="h-8 w-auto" />
           <span className="gradient-text">NEGDi</span>
         </a>
 
