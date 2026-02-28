@@ -7,28 +7,26 @@ export default function PaymentGatewaySection() {
   const { lang } = useLang();
 
   return (
-    <section id="payment" className="py-24 lg:py-32 relative">
-      {/* Subtle background */}
+    <section id="payment" className="py-16 lg:py-20 relative">
       <div className="absolute inset-0 bg-gradient-to-br from-secondary/50 to-background" />
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Content */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="h-1 w-12 gradient-line rounded-full mb-6" />
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+            <div className="h-1 w-12 gradient-line rounded-full mb-5" />
+            <h2 className="text-3xl lg:text-4xl font-bold mb-5">
               {t(translations.paymentGateway.title, lang)}
             </h2>
-            <p className="text-muted-foreground leading-relaxed mb-8">
+            <p className="text-muted-foreground leading-relaxed mb-6 text-sm">
               {t(translations.paymentGateway.description, lang)}
             </p>
 
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-2.5 mb-6">
               {translations.paymentGateway.features.map((feat, i) => (
                 <motion.li
                   key={i}
@@ -46,13 +44,15 @@ export default function PaymentGatewaySection() {
               ))}
             </ul>
 
-            <button className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:bg-accent transition-colors shadow-lg shadow-primary/20">
+            <button
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm uppercase tracking-wider hover:bg-accent transition-colors shadow-lg shadow-primary/20"
+            >
               {t(translations.paymentGateway.cta, lang)}
               <ArrowRight className="w-4 h-4" />
             </button>
           </motion.div>
 
-          {/* Mock UI */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -60,26 +60,24 @@ export default function PaymentGatewaySection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="glass-card rounded-2xl p-8 border border-border">
-              {/* Mock dashboard */}
-              <div className="flex items-center gap-2 mb-6">
+            <div className="glass-card rounded-2xl p-6 border border-border">
+              <div className="flex items-center gap-2 mb-5">
                 <div className="w-3 h-3 rounded-full bg-destructive/50" />
                 <div className="w-3 h-3 rounded-full bg-accent/40" />
                 <div className="w-3 h-3 rounded-full bg-primary/30" />
               </div>
-              <div className="space-y-4">
-                <div className="h-8 w-48 bg-secondary rounded-md" />
-                <div className="grid grid-cols-3 gap-3">
+              <div className="space-y-3">
+                <div className="h-7 w-44 bg-secondary rounded-md" />
+                <div className="grid grid-cols-3 gap-2.5">
                   {[1, 2, 3].map((n) => (
-                    <div key={n} className="bg-secondary rounded-lg p-4">
-                      <div className="h-3 w-12 bg-primary/20 rounded mb-2" />
-                      <div className="h-6 w-16 bg-primary/10 rounded" />
+                    <div key={n} className="bg-secondary rounded-lg p-3">
+                      <div className="h-2.5 w-10 bg-primary/20 rounded mb-1.5" />
+                      <div className="h-5 w-14 bg-primary/10 rounded" />
                     </div>
                   ))}
                 </div>
-                <div className="h-32 bg-secondary rounded-lg relative overflow-hidden">
-                  {/* Chart bars */}
-                  <div className="absolute bottom-0 left-0 right-0 flex items-end justify-around h-24 px-4">
+                <div className="h-28 bg-secondary rounded-lg relative overflow-hidden">
+                  <div className="absolute bottom-0 left-0 right-0 flex items-end justify-around h-20 px-3">
                     {[40, 65, 50, 80, 60, 75, 90].map((h, i) => (
                       <motion.div
                         key={i}
@@ -87,14 +85,13 @@ export default function PaymentGatewaySection() {
                         whileInView={{ height: `${h}%` }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
-                        className="w-4 rounded-t gradient-line"
+                        className="w-3.5 rounded-t gradient-line"
                       />
                     ))}
                   </div>
                 </div>
               </div>
             </div>
-            {/* Decorative glow */}
             <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 rounded-full blur-3xl" />
           </motion.div>
         </div>

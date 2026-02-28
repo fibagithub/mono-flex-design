@@ -4,7 +4,7 @@ import { useLang } from "@/lib/language-context";
 import { translations, t } from "@/lib/translations";
 import { motion, AnimatePresence } from "framer-motion";
 
-const navItems = ["services", "payment", "about", "team", "contact"] as const;
+const navItems = ["services", "payment", "about", "team", "partners", "contact"] as const;
 
 export default function Header() {
   const { lang, setLang } = useLang();
@@ -30,26 +30,23 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between h-16 px-4 lg:px-8">
-        {/* Logo */}
+      <div className="container mx-auto flex items-center justify-between h-14 px-4 lg:px-8">
         <a href="#" className="flex items-center gap-2 font-bold text-xl tracking-tight">
           <span className="gradient-text">NEGDi</span>
         </a>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6">
           {navItems.map((key) => (
             <button
               key={key}
               onClick={() => scrollTo(key)}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className="text-xs font-medium uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors"
             >
               {t(translations.nav[key], lang)}
             </button>
           ))}
         </nav>
 
-        {/* Language toggle + mobile menu */}
         <div className="flex items-center gap-3">
           <div className="flex items-center rounded-full border border-border overflow-hidden text-xs font-semibold">
             <button
@@ -79,7 +76,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile nav */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -88,12 +84,12 @@ export default function Header() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border overflow-hidden"
           >
-            <nav className="flex flex-col items-center gap-4 py-6">
+            <nav className="flex flex-col items-center gap-3 py-4">
               {navItems.map((key) => (
                 <button
                   key={key}
                   onClick={() => scrollTo(key)}
-                  className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                  className="text-sm font-medium uppercase tracking-wider text-foreground hover:text-primary transition-colors"
                 >
                   {t(translations.nav[key], lang)}
                 </button>

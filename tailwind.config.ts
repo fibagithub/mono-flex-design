@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Manrope', 'sans-serif'],
+        sans: ['Montserrat', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -50,13 +50,9 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        burgundy: {
-          DEFAULT: "hsl(var(--burgundy))",
-          foreground: "hsl(var(--burgundy-foreground))",
-        },
-        "soft-red": {
-          DEFAULT: "hsl(var(--soft-red))",
-          foreground: "hsl(var(--soft-red-foreground))",
+        "cool-gray": {
+          DEFAULT: "hsl(var(--cool-gray))",
+          foreground: "hsl(var(--cool-gray-foreground))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
