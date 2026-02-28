@@ -18,13 +18,9 @@ export default function TeamSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-3">
-            {t(translations.team.title, lang)}
-          </h2>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-3">{t(translations.team.title, lang)}</h2>
           <div className="h-1 w-16 gradient-line rounded-full mx-auto mb-3" />
-          <p className="text-muted-foreground text-sm">
-            {t(translations.team.subtitle, lang)}
-          </p>
+          <p className="text-muted-foreground text-sm">{t(translations.team.subtitle, lang)}</p>
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -39,15 +35,23 @@ export default function TeamSection() {
             >
               <div className="relative w-28 h-28 mx-auto mb-4 rounded-2xl overflow-hidden">
                 {member.image_url ? (
-                  <img src={member.image_url} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" alt={lang === "mn" ? (member as any).name_mn || member.name : (member as any).name_en || member.name} />
+                  <img
+                    src={member.image_url}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    alt={
+                      lang === "mn" ? (member as any).name_mn || member.name : (member as any).name_en || member.name
+                    }
+                  />
                 ) : (
                   <div className="w-full h-full bg-secondary flex items-center justify-center text-2xl font-bold text-primary group-hover:scale-105 transition-transform duration-300">
                     {member.name.charAt(0)}
                   </div>
                 )}
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-primary/30 transition-colors duration-300" />
+                <div className="absolute inset-0 rounded-2xl border-2 border-primary/30 transition-colors duration-300" />
               </div>
-              <h3 className="font-bold text-base mb-1">{lang === "mn" ? (member as any).name_mn || member.name : (member as any).name_en || member.name}</h3>
+              <h3 className="font-bold text-base mb-1">
+                {lang === "mn" ? (member as any).name_mn || member.name : (member as any).name_en || member.name}
+              </h3>
               <p className="text-xs font-medium text-primary mb-1.5">
                 {lang === "mn" ? member.position_mn : member.position_en}
               </p>
