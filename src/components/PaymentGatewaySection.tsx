@@ -58,41 +58,51 @@ export default function PaymentGatewaySection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
+            className="relative flex items-center justify-center"
           >
-            <div className="glass-card rounded-2xl p-6 border border-border">
-              <div className="flex items-center gap-2 mb-5">
-                <div className="w-3 h-3 rounded-full bg-destructive/50" />
-                <div className="w-3 h-3 rounded-full bg-accent/40" />
-                <div className="w-3 h-3 rounded-full bg-primary/30" />
-              </div>
-              <div className="space-y-3">
-                <div className="h-7 w-44 bg-secondary rounded-md" />
-                <div className="grid grid-cols-3 gap-2.5">
-                  {[1, 2, 3].map((n) => (
-                    <div key={n} className="bg-secondary rounded-lg p-3">
-                      <div className="h-2.5 w-10 bg-primary/20 rounded mb-1.5" />
-                      <div className="h-5 w-14 bg-primary/10 rounded" />
-                    </div>
-                  ))}
-                </div>
-                <div className="h-28 bg-secondary rounded-lg relative overflow-hidden">
-                  <div className="absolute bottom-0 left-0 right-0 flex items-end justify-around h-20 px-3">
-                    {[40, 65, 50, 80, 60, 75, 90].map((h, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ height: 0 }}
-                        whileInView={{ height: `${h}%` }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.5 + i * 0.1, duration: 0.5 }}
-                        className="w-3.5 rounded-t gradient-line"
-                      />
-                    ))}
+            {/* Payment illustration */}
+            <div className="relative w-full max-w-md">
+              <div className="glass-card rounded-2xl p-8 border border-border">
+                {/* Card visual */}
+                <div className="w-full aspect-[1.6/1] rounded-xl bg-gradient-to-br from-primary to-accent p-5 text-primary-foreground mb-6 shadow-xl shadow-primary/20">
+                  <div className="flex justify-between items-start mb-8">
+                    <div className="w-10 h-7 rounded bg-primary-foreground/30" />
+                    <svg className="w-8 h-8 opacity-80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10S2 17.52 2 12z" />
+                      <path d="M8 12c0-5.52 1.79-10 4-10s4 4.48 4 10-1.79 10-4 10-4-4.48-4-10z" />
+                      <path d="M2 12h20" />
+                    </svg>
+                  </div>
+                  <div className="text-sm tracking-[0.25em] font-mono mb-4 opacity-90">•••• •••• •••• 4289</div>
+                  <div className="flex justify-between items-end text-xs opacity-70">
+                    <span>NEGDI PAYMENT</span>
+                    <span>12/28</span>
                   </div>
                 </div>
+
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { label: lang === "mn" ? "Гүйлгээ" : "Transactions", value: "12.5K" },
+                    { label: lang === "mn" ? "Амжилт" : "Success", value: "99.8%" },
+                    { label: lang === "mn" ? "Хурд" : "Speed", value: "<1s" },
+                  ].map((stat, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.6 + i * 0.1 }}
+                      className="text-center p-3 rounded-lg bg-secondary"
+                    >
+                      <div className="text-lg font-bold text-primary">{stat.value}</div>
+                      <div className="text-[10px] text-muted-foreground mt-0.5">{stat.label}</div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
+              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 rounded-full blur-3xl" />
             </div>
-            <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 rounded-full blur-3xl" />
           </motion.div>
         </div>
       </div>
