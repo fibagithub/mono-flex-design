@@ -42,7 +42,7 @@ export default function PaymentGatewaySection() {
           >
             <button
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm uppercase tracking-wider hover:bg-accent transition-colors shadow-lg shadow-primary/20"
+              className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm tracking-wider hover:bg-accent transition-colors shadow-lg shadow-primary/20"
             >
               {t(translations.nav.contact, lang)}
             </button>
