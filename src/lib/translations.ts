@@ -17,7 +17,7 @@ export const translations = {
     about: { mn: "Бидний тухай", en: "About Us" },
     team: { mn: "Манай баг", en: "Our Team" },
     partners: { mn: "Хамтрагчид", en: "Partners" },
-    contact: { mn: "Холбоо барих", en: "Contact" },
+    contact: { mn: "НЭГДи-е", en: "Contact" },
   },
   hero: {
     tagline: {
