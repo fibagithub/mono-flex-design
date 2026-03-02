@@ -4,8 +4,6 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: '/mono-flex-design/',  // ← ЭНД НЭМЭХ! Repo нэр + '/' (том жижиг яг таарах ёстой)
-
   server: {
     host: "::",
     port: 8080,
