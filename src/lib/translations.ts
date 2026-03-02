@@ -128,7 +128,7 @@ export const translations = {
         mn: "Хан-Уул дүүрэг, 15-р хороо, Үйлдвэр, Богд жавзан дамба гудамж 12 байр, 1 тоот",
         en: "Khan-Uul District, 15th Khoroo, Factory, Bogd Javzan Damba Street, Building 12, Unit 1",
       },
-      phone: "+976-7509-2211",
+      phone: "+976-7509-2211 (1 → 3)",
       email: "hello@negdi.mn",
     },
   },
