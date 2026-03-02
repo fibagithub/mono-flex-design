@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useLang } from "@/lib/language-context";
 import { translations, t } from "@/lib/translations";
 import { useTeamMembers } from "@/hooks/useTeamMembers";
+import SafeHTML from "./SafeHTML";
 
 export default function TeamSection() {
   const { lang } = useLang();
@@ -55,9 +56,10 @@ export default function TeamSection() {
               <p className="text-xs font-medium text-primary mb-1.5">
                 {lang === "mn" ? member.position_mn : member.position_en}
               </p>
-              <p className="text-xs text-muted-foreground leading-relaxed text-justify">
-                {lang === "mn" ? member.description_mn : member.description_en}
-              </p>
+              <SafeHTML
+                html={lang === "mn" ? member.description_mn : member.description_en}
+                className="text-xs text-muted-foreground leading-relaxed text-justify"
+              />
               <div className="h-0.5 w-0 group-hover:w-12 gradient-line mx-auto mt-2 transition-all duration-300 rounded-full" />
             </motion.div>
           ))}

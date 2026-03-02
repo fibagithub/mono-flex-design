@@ -4,6 +4,7 @@ import { useLang } from "@/lib/language-context";
 import { useTeamMembers, TeamMember } from "@/hooks/useTeamMembers";
 import { Plus, Pencil, Trash2, Eye, EyeOff, X, Upload } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import RichTextEditor from "./RichTextEditor";
 
 interface FormData {
   name: string;
@@ -105,14 +106,16 @@ export default function AdminTeam() {
                   <input value={form.position_en} onChange={e => setForm(f => ({ ...f, position_en: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-input bg-background text-sm" />
                 </div>
               </div>
-              <div>
-                <label className="text-xs font-medium text-muted-foreground">{lang === "mn" ? "Танилцуулга (MN)" : "Description (MN)"}</label>
-                <textarea rows={2} value={form.description_mn} onChange={e => setForm(f => ({ ...f, description_mn: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-input bg-background text-sm resize-none" />
-              </div>
-              <div>
-                <label className="text-xs font-medium text-muted-foreground">{lang === "mn" ? "Танилцуулга (EN)" : "Description (EN)"}</label>
-                <textarea rows={2} value={form.description_en} onChange={e => setForm(f => ({ ...f, description_en: e.target.value }))} className="w-full px-3 py-2 rounded-lg border border-input bg-background text-sm resize-none" />
-              </div>
+              <RichTextEditor
+                label={lang === "mn" ? "Танилцуулга (MN)" : "Description (MN)"}
+                value={form.description_mn}
+                onChange={(html) => setForm(f => ({ ...f, description_mn: html }))}
+              />
+              <RichTextEditor
+                label={lang === "mn" ? "Танилцуулга (EN)" : "Description (EN)"}
+                value={form.description_en}
+                onChange={(html) => setForm(f => ({ ...f, description_en: html }))}
+              />
               <div>
                 <label className="text-xs font-medium text-muted-foreground">{lang === "mn" ? "Эрэмбэ" : "Sort Order"}</label>
                 <input type="number" value={form.sort_order} onChange={e => setForm(f => ({ ...f, sort_order: Number(e.target.value) }))} className="w-full px-3 py-2 rounded-lg border border-input bg-background text-sm" />
