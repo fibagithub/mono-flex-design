@@ -31,7 +31,7 @@ export default function Header() {
     >
       <div className="container mx-auto flex items-center justify-between h-14 px-4 lg:px-8">
         <a href="#" className="flex items-center gap-2">
-          <img src={logo} alt="NEGDi logo" className="h-8 w-auto" />
+          <img src={logo} alt="NEGDi logo" className="h-10 md:h-12 w-auto" />
         </a>
 
         <nav className="hidden md:flex items-center gap-6">
