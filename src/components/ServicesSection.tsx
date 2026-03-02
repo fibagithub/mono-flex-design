@@ -4,6 +4,7 @@ import { ChevronUp } from "lucide-react";
 import { useLang } from "@/lib/language-context";
 import { translations, t } from "@/lib/translations";
 import { useServices } from "@/hooks/useServices";
+import SafeHTML from "./SafeHTML";
 
 
 
@@ -70,13 +71,13 @@ function ServiceCard({ service, index }: { service: any; index: number }) {
         <div className="text-sm text-muted-foreground leading-relaxed mb-4 text-justify">
           <AnimatePresence mode="wait">
             {expanded ? (
-              <motion.p key="full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                {desc}
-              </motion.p>
+              <motion.div key="full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                <SafeHTML html={desc} />
+              </motion.div>
             ) : (
-              <motion.p key="preview" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="line-clamp-3">
-                {desc}
-              </motion.p>
+              <motion.div key="preview" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="line-clamp-3">
+                <SafeHTML html={desc} />
+              </motion.div>
             )}
           </AnimatePresence>
         </div>
