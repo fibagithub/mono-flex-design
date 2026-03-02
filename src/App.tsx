@@ -17,7 +17,7 @@ const App = () => (
       <LanguageProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename="/mono-flex-design">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/mn" element={<Index />} />
