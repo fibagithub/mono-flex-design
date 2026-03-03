@@ -102,33 +102,6 @@ export default function PaymentSection() {
           })}
         </div>
 
-        {/* Bottom notes */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-3xl mx-auto space-y-4"
-        >
-          <div className="flex items-start gap-3 rounded-[20px] bg-card border border-border/50 p-5" style={{ boxShadow: "var(--shadow-card)" }}>
-            <Shield className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {t(content.tokenNote, lang)}
-            </p>
-          </div>
-
-          <p className="text-sm text-muted-foreground leading-relaxed text-center px-4">
-            {t(content.localMethods, lang)}
-          </p>
-
-          <div className="flex items-start gap-3 rounded-[20px] bg-card border border-border/50 p-5" style={{ boxShadow: "var(--shadow-card)" }}>
-            <LinkIcon className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              {t(content.paylink, lang)}
-            </p>
-          </div>
-        </motion.div>
-
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
