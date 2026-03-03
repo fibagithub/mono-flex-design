@@ -29,7 +29,7 @@ const content = {
     {
       title: { mn: "Давтамжтай / хуваарьт төлбөрүүд", en: "Recurring / scheduled payments" },
       desc: {
-        mn: "Захиалгын автомат төлбөр, хуваарьт төлбөр, санхүүгийн үйлчилгээний \"subscription\"",
+        mn: 'Захиалгын автомат төлбөр, хуваарьт төлбөр, санхүүгийн үйлчилгээний "subscription"',
         en: "Automatic billing for subscriptions, installments, and financial services",
       },
       icon: RefreshCw,
@@ -53,25 +53,10 @@ export default function PaymentSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-3 text-foreground">
-            {t(content.title, lang)}
-          </h2>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-3 text-foreground">{t(content.title, lang)}</h2>
           <div className="h-1 w-16 gradient-line rounded-full mx-auto mb-4" />
-          <p className="text-muted-foreground max-w-2xl mx-auto text-sm leading-relaxed">
-            {t(content.intro, lang)}
-          </p>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-sm leading-relaxed">{t(content.intro, lang)}</p>
         </motion.div>
-
-        {/* Modes subtitle */}
-        <motion.h3
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-lg font-bold text-center mb-8 text-foreground"
-        >
-          {lang === "mn" ? "Дэмжигдэх гол 3 төрлийн төлбөрийн горим:" : "Supports three core payment modes:"}
-        </motion.h3>
 
         {/* 3 Payment mode cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto">
@@ -90,12 +75,8 @@ export default function PaymentSection() {
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors">
                   <Icon className="w-6 h-6 text-primary" />
                 </div>
-                <h4 className="font-bold text-base text-foreground mb-2">
-                  {t(mode.title, lang)}
-                </h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {t(mode.desc, lang)}
-                </p>
+                <h4 className="font-bold text-base text-foreground mb-2">{t(mode.title, lang)}</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t(mode.desc, lang)}</p>
               </motion.div>
             );
           })}
