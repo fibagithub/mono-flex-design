@@ -55,7 +55,9 @@ export default function PaymentSection() {
         >
           <h2 className="text-3xl lg:text-4xl font-bold mb-3 text-foreground">{t(content.title, lang)}</h2>
           <div className="h-1 w-16 gradient-line rounded-full mx-auto mb-4" />
-          <p className="text-muted-foreground max-w-4xl mx-auto text-sm leading-relaxed">{t(content.intro, lang)}</p>
+          <p className="text-muted-foreground max-w-4xl mx-auto text-sm leading-relaxed text-justify">
+            {t(content.intro, lang)}
+          </p>
         </motion.div>
 
         {/* 3 Payment mode cards */}
