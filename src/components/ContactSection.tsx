@@ -4,6 +4,7 @@ import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useLang } from "@/lib/language-context";
 import { translations, t } from "@/lib/translations";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function ContactSection() {
   const { lang } = useLang();
@@ -11,14 +12,26 @@ export default function ContactSection() {
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
+    try {
+      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+        body: form,
+      });
+      if (error) throw error;
       toast({ title: t(translations.contact.form.success, lang) });
       setForm({ name: "", email: "", phone: "", message: "" });
+    } catch (err) {
+      console.error("Contact form error:", err);
+      toast({
+        title: lang === "mn" ? "Алдаа гарлаа" : "Error occurred",
+        description: lang === "mn" ? "Мессеж илгээхэд алдаа гарлаа. Дахин оролдоно уу." : "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   const info = translations.contact.info;
