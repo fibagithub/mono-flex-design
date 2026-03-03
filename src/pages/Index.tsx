@@ -12,6 +12,7 @@ import PartnersSection from "@/components/PartnersSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import PaymentSection from "@/components/PaymentSection";
 
 const Index = () => {
   const { lang } = useLang();
@@ -48,6 +49,7 @@ const Index = () => {
       <Header />
       <HeroSection />
       <ServicesSection />
+      <PaymentSection />
       <PartnersSection />
       <WhyUsSection />
       <AboutSection />
