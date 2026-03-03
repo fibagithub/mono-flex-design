@@ -1,7 +1,61 @@
 import { motion } from "framer-motion";
-import { Check, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useLang } from "@/lib/language-context";
 import { translations, t } from "@/lib/translations";
+
+const content = {
+  title: { mn: "Төлбөрийн гарц", en: "Payment Gateway" },
+  intro: {
+    mn: "Манай аюулгүй, уян хатан төлбөрийн гарц нь бизнесүүдэд онлайн төлбөрийг карт, QPay болон бусад орчин үеийн төлбөрийн аргуудаар хүлээн авах боломжийг хялбар, найдвартайгаар олгодог. Платформ нь:",
+    en: "A secure and flexible payment gateway enabling businesses to accept online payments via cards, QPay, and local methods. The platform supports seamless API integration, dynamic tokenization, 3D Secure v2.2, and real-time transaction monitoring.",
+  },
+  platformFeatures: [
+    { mn: "API интеграцын уян хатан холболт", en: "Seamless API integration" },
+    { mn: "Динамик токенжуулалт (tokenization) – картын мэдээллийг аюулгүй хадгалах", en: "Dynamic tokenization" },
+    { mn: "3D Secure v2.2 – өндөр түвшний баталгаажуулалт", en: "3D Secure v2.2" },
+    { mn: "Бодит цагийн гүйлгээний хяналт ба мониторинг", en: "Real-time transaction monitoring" },
+  ],
+  platformOutro: {
+    mn: "гэх мэт дэвшилтэт технологиудыг дэмждэг тул бизнес тань хурдан, аюулгүй, хэрэглэгчдэд ээлтэй туршлага бий болгоно.",
+    en: "",
+  },
+  modesTitle: {
+    mn: "Дэмжигдэх гол 3 төрлийн төлбөрийн горим:",
+    en: "Supports three core payment modes:",
+  },
+  modes: [
+    {
+      title: { mn: "Худалдан авалтын төлбөрүүд", en: "Purchase payments" },
+      desc: { mn: "цахим худалдаа, мобайл апп, онлайн дэлгүүр", en: "all types of e-commerce, mobile app, and online payments" },
+    },
+    {
+      title: { mn: "Шаардлагатай төлбөрүүд", en: "Requiring payments" },
+      desc: {
+        mn: "төрийн үйлчилгээ, цахилгаан, ус, дулаан, орон сууцны СӨХ, харилцаа холбоо, интернет, зээлийн төлбөр, гишүүнчлэлийн төлбөр гэх мэт",
+        en: "government services, utility bills (electricity, water, heat, HOA), telecom and internet subscriptions, loan repayments, membership fees",
+      },
+    },
+    {
+      title: { mn: "Давтамжтай / хуваарьт төлбөрүүд", en: "Recurring / scheduled payments" },
+      desc: {
+        mn: "захиалгын автомат төлбөр, хуваарьт төлбөр, санхүүгийн үйлчилгээний \"subscription\"",
+        en: "automatic billing for subscriptions, installments, and financial services",
+      },
+    },
+  ],
+  tokenNote: {
+    mn: "Карт эзэмшигч нэг удаа картын мэдээллээ токенжуулсны дараа дараагийн бүх төлбөрүүд карт дахин оруулахгүйгээр бүрэн автомат хийгдэх боломжийг олгодог (one-click, recurring billing).",
+    en: "Once a cardholder tokenizes their card, subsequent payments are fully automated without re-entering card details. Supports single API connection for multiple payment instruments.",
+  },
+  localMethods: {
+    mn: "",
+    en: "Local methods include SocialPay, MonPay, and others. International methods: Visa, Mastercard, UnionPay, WeChat Pay, Alipay.",
+  },
+  paylink: {
+    mn: "Мөн PayLink (www.paylink.mn) үйлчилгээгээр дамжуулан бизнесүүдэд URL линк, SMS, эсвэл имэйл-ээр аюулгүй төлбөрийн нэхэмжлэх илгээж хялбар аргаар төлбөр цуглуулахад төгс шийдэл юм.",
+    en: "NEGDi also powers PayLink (www.paylink.mn) — a payment link and collection service for businesses to send secure payment requests via URL, SMS, or email.",
+  },
+};
 
 export default function PaymentSection() {
   const { lang } = useLang();
@@ -11,127 +65,78 @@ export default function PaymentSection() {
       <div className="absolute inset-0 bg-gradient-to-br from-secondary/50 to-background" />
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          
-          {/* LEFT SIDE */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="h-1 w-12 gradient-line rounded-full mb-5" />
-            
-            <h2 className="text-3xl lg:text-4xl font-bold mb-5">
-              {t(translations.paymentGateway.title, lang)}
-            </h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto"
+        >
+          <div className="h-1 w-12 gradient-line rounded-full mb-5" />
 
-            <p className="text-muted-foreground leading-relaxed mb-6 text-sm">
-              {t(translations.paymentGateway.description, lang)}
-            </p>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+            {t(content.title, lang)}
+          </h2>
 
-            <ul className="space-y-2.5 mb-6">
-              {translations.paymentGateway.features.map((feat, i) => (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08 }}
-                  className="flex items-center gap-3"
-                >
-                  <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 text-primary" />
-                  </div>
-                  <span className="text-sm font-medium">
+          <p className="text-muted-foreground leading-relaxed mb-4 text-sm">
+            {t(content.intro, lang)}
+          </p>
+
+          {/* Platform features - only show as list for MN */}
+          {lang === "mn" && (
+            <>
+              <ul className="space-y-1.5 mb-3 ml-4">
+                {content.platformFeatures.map((feat, i) => (
+                  <li key={i} className="text-sm text-muted-foreground list-disc">
                     {t(feat, lang)}
-                  </span>
-                </motion.li>
-              ))}
-            </ul>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-muted-foreground leading-relaxed mb-6 text-sm">
+                {t(content.platformOutro, lang)}
+              </p>
+            </>
+          )}
 
-            <button
-              onClick={() =>
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm uppercase tracking-wider hover:bg-accent transition-colors shadow-lg shadow-primary/20"
-            >
-              {t(translations.paymentGateway.cta, lang)}
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </motion.div>
+          {/* Payment modes */}
+          <h3 className="text-lg font-semibold mb-3 mt-6">
+            {t(content.modesTitle, lang)}
+          </h3>
 
-          {/* RIGHT SIDE */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative flex items-center justify-center"
+          <ul className="space-y-3 mb-6 ml-4">
+            {content.modes.map((mode, i) => (
+              <li key={i} className="text-sm list-disc">
+                <span className="font-semibold">{t(mode.title, lang)}</span>
+                {" — "}
+                <span className="text-muted-foreground">{t(mode.desc, lang)}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p className="text-muted-foreground leading-relaxed mb-4 text-sm">
+            {t(content.tokenNote, lang)}
+          </p>
+
+          {lang === "en" && (
+            <p className="text-muted-foreground leading-relaxed mb-4 text-sm">
+              {t(content.localMethods, lang)}
+            </p>
+          )}
+
+          <p className="text-muted-foreground leading-relaxed mb-8 text-sm">
+            {t(content.paylink, lang)}
+          </p>
+
+          <button
+            onClick={() =>
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium text-sm uppercase tracking-wider hover:bg-accent transition-colors shadow-lg shadow-primary/20"
           >
-            <div className="relative w-full max-w-md">
-              <div className="glass-card rounded-2xl p-8 border border-border">
-                
-                {/* CARD */}
-                <div className="w-full aspect-[1.6/1] rounded-xl bg-gradient-to-br from-primary to-accent p-5 text-primary-foreground mb-6 shadow-xl shadow-primary/20">
-                  <div className="flex justify-between items-start mb-8">
-                    <div className="w-10 h-7 rounded bg-primary-foreground/30" />
-                    <svg
-                      className="w-8 h-8 opacity-80"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    >
-                      <path d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10S2 17.52 2 12z" />
-                      <path d="M8 12c0-5.52 1.79-10 4-10s4 4.48 4 10-1.79 10-4 10-4-4.48-4-10z" />
-                      <path d="M2 12h20" />
-                    </svg>
-                  </div>
-
-                  <div className="text-sm tracking-[0.25em] font-mono mb-4 opacity-90">
-                    •••• •••• •••• 4289
-                  </div>
-
-                  <div className="flex justify-between items-end text-xs opacity-70">
-                    <span>NEGDI PAYMENT</span>
-                    <span>12/28</span>
-                  </div>
-                </div>
-
-                {/* STATS */}
-                <div className="grid grid-cols-3 gap-3">
-                  {[
-                    { label: lang === "mn" ? "Гүйлгээ" : "Transactions", value: "12.5K" },
-                    { label: lang === "mn" ? "Амжилт" : "Success", value: "99.8%" },
-                    { label: lang === "mn" ? "Хурд" : "Speed", value: "<1s" },
-                  ].map((stat, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.6 + i * 0.1 }}
-                      className="text-center p-3 rounded-lg bg-secondary"
-                    >
-                      <div className="text-lg font-bold text-primary">
-                        {stat.value}
-                      </div>
-                      <div className="text-[10px] text-muted-foreground mt-0.5">
-                        {stat.label}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 rounded-full blur-3xl" />
-            </div>
-          </motion.div>
-
-        </div>
+            {t(translations.paymentGateway.cta, lang)}
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </motion.div>
       </div>
     </section>
   );
