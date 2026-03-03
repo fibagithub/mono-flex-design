@@ -6,8 +6,7 @@ import { translations, t } from "@/lib/translations";
 const content = {
   title: { mn: "Төлбөрийн гарц", en: "Payment Gateway" },
   intro: {
-    mn: "Манай аюулгүй, уян хатан төлбөрийн гарц нь бизнесүүдэд онлайн төлбөрийг карт, QPay болон бусад орчин үеийн төлбөрийн аргуудаар хүлээн авах боломжийг хялбар, найдвартайгаар олгодог. API интеграц, динамик токенжуулалт, 3D Secure v2.2, бодит цагийн гүйлгээний хяналт зэрэг дэвшилтэт технологиудыг дэмждэг. Карт эзэмшигч нэг удаа картын мэдээллээ токенжуулсны дараа дараагийн бүх төлбөрүүд карт дахин оруулахгүйгээр бүрэн автомат хийгдэх боломжийг олгодог (one-click, recurring billing). Мөн PayLink (www.paylink.mn) үйлчилгээгээр дамжуулан бизнесүүдэд URL линк, SMS, эсвэл имэйл-ээр аюулгүй төлбөрийн нэхэмжлэх илгээж хялбар аргаар төлбөр цуглуулахад төгс шийдэл юм.
-",
+    mn: "Манай аюулгүй, уян хатан төлбөрийн гарц нь бизнесүүдэд онлайн төлбөрийг карт, QPay болон бусад орчин үеийн төлбөрийн аргуудаар хүлээн авах боломжийг хялбар, найдвартайгаар олгодог. API интеграц, динамик токенжуулалт, 3D Secure v2.2, бодит цагийн гүйлгээний хяналт зэрэг дэвшилтэт технологиудыг дэмждэг. Карт эзэмшигч нэг удаа картын мэдээллээ токенжуулсны дараа дараагийн бүх төлбөрүүд карт дахин оруулахгүйгээр бүрэн автомат хийгдэх боломжийг олгодог (one-click, recurring billing). Мөн PayLink (www.paylink.mn) үйлчилгээгээр дамжуулан бизнесүүдэд URL линк, SMS, эсвэл имэйл-ээр аюулгүй төлбөрийн нэхэмжлэх илгээж хялбар аргаар төлбөр цуглуулахад төгс шийдэл юм.",
     en: "A secure and flexible payment gateway enabling businesses to accept online payments via cards, QPay, and local methods. The platform supports seamless API integration, dynamic tokenization, 3D Secure v2.2, and real-time transaction monitoring.Once a cardholder tokenizes their card, subsequent payments are fully automated without re-entering card details. Supports single API connection for multiple payment instruments. Local methods include SocialPay, MonPay, and others. International methods: Visa, Mastercard, UnionPay, WeChat Pay, Alipay. NEGDi also powers PayLink (www.paylink.mn) — a payment link and collection service for businesses to send secure payment requests via URL, SMS, or email.",
   },
   modes: [
@@ -71,7 +70,7 @@ export default function PaymentSection() {
           transition={{ duration: 0.5 }}
           className="text-lg font-bold text-center mb-8 text-foreground"
         >
-          {t(content.modesTitle, lang)}
+          {lang === "mn" ? "Дэмжигдэх гол 3 төрлийн төлбөрийн горим:" : "Supports three core payment modes:"}
         </motion.h3>
 
         {/* 3 Payment mode cards */}
