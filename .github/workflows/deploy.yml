@@ -22,12 +22,12 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build
         run: npm run build
 
-      # SPA routing fallback
+      # React/Vite SPA routing fallback
       - name: Create 404 fallback
         run: cp dist/index.html dist/404.html
 
