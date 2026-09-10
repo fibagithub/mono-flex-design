@@ -6,6 +6,8 @@ export interface Partner {
   name_mn: string;
   name_en: string;
   logo_url: string | null;
+  logo_url_mn: string | null;
+  logo_url_en: string | null;
   sort_order: number;
   is_active: boolean;
   created_at: string;

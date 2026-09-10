@@ -1,0 +1,3 @@
+ALTER TABLE public.partners
+  ADD COLUMN IF NOT EXISTS logo_url_mn TEXT,
+  ADD COLUMN IF NOT EXISTS logo_url_en TEXT;
