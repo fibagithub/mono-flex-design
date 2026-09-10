@@ -107,20 +107,29 @@ export default function AdminPartners() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {partners.map((p) => (
           <div key={p.id} className="bg-background rounded-xl border border-border p-4 text-center">
-            <div className="w-20 h-20 mx-auto mb-3 rounded-xl overflow-hidden bg-muted flex items-center justify-center">
-              {p.logo_url ? (
-                <img src={p.logo_url} className="w-full h-full object-contain p-2" alt="" />
-              ) : (
-                <span className="text-xs text-muted-foreground">{lang === "mn" ? "Лого" : "Logo"}</span>
-              )}
+            <div className="grid grid-cols-2 gap-2 mb-3">
+              {(["mn", "en"] as const).map((code) => {
+                const src = code === "mn" ? (p.logo_url_mn || p.logo_url) : (p.logo_url_en || p.logo_url);
+                return (
+                  <div key={code} className="space-y-1">
+                    <div className="w-full h-16 rounded-lg overflow-hidden bg-muted flex items-center justify-center">
+                      {src ? (
+                        <img src={src} className="w-full h-full object-contain p-1.5" alt="" />
+                      ) : (
+                        <span className="text-[10px] text-muted-foreground">{lang === "mn" ? "Лого" : "Logo"}</span>
+                      )}
+                    </div>
+                    <label className="cursor-pointer text-[11px] text-primary hover:underline block">
+                      <Upload className="w-3 h-3 inline mr-1" />
+                      {uploading ? "..." : code.toUpperCase()}
+                      <input type="file" accept="image/*" className="hidden" onChange={e => { if (e.target.files?.[0]) handleLogoUpload(p.id, e.target.files[0], code); }} />
+                    </label>
+                  </div>
+                );
+              })}
             </div>
             <h4 className="font-medium text-sm">{lang === "mn" ? p.name_mn : p.name_en}</h4>
             <div className="flex items-center justify-center gap-2 mt-3">
-              <label className="cursor-pointer text-xs text-primary hover:underline">
-                <Upload className="w-3 h-3 inline mr-1" />
-                {uploading ? "..." : (lang === "mn" ? "Лого" : "Logo")}
-                <input type="file" accept="image/*" className="hidden" onChange={e => { if (e.target.files?.[0]) handleLogoUpload(p.id, e.target.files[0]); }} />
-              </label>
               <button onClick={() => toggleActive(p.id, p.is_active)} className={`text-xs px-2 py-0.5 rounded-full ${p.is_active ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"}`}>
                 {p.is_active ? <Eye className="w-3 h-3 inline" /> : <EyeOff className="w-3 h-3 inline" />}
               </button>
