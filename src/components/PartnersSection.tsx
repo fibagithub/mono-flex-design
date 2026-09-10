@@ -49,7 +49,8 @@ export default function PartnersSection() {
                 </span>
               )}
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

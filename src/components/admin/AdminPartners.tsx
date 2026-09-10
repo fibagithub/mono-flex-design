@@ -50,14 +50,15 @@ export default function AdminPartners() {
     await supabase.from("partners").update({ is_active: !current }).eq("id", id);
   };
 
-  const handleLogoUpload = async (id: string, file: File) => {
+  const handleLogoUpload = async (id: string, file: File, target: "mn" | "en") => {
     setUploading(true);
     const ext = file.name.split(".").pop();
-    const path = `${id}/logo-${Date.now()}.${ext}`;
+    const path = `${id}/logo-${target}-${Date.now()}.${ext}`;
     const { error } = await supabase.storage.from("partners").upload(path, file, { upsert: true });
     if (!error) {
       const { data: { publicUrl } } = supabase.storage.from("partners").getPublicUrl(path);
-      await supabase.from("partners").update({ logo_url: publicUrl }).eq("id", id);
+      const field = target === "mn" ? "logo_url_mn" : "logo_url_en";
+      await supabase.from("partners").update({ [field]: publicUrl }).eq("id", id);
     }
     setUploading(false);
   };
