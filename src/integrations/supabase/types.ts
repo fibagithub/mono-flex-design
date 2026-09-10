@@ -20,6 +20,8 @@ export type Database = {
           id: string
           is_active: boolean
           logo_url: string | null
+          logo_url_en: string | null
+          logo_url_mn: string | null
           name_en: string
           name_mn: string
           sort_order: number
@@ -30,6 +32,8 @@ export type Database = {
           id?: string
           is_active?: boolean
           logo_url?: string | null
+          logo_url_en?: string | null
+          logo_url_mn?: string | null
           name_en: string
           name_mn: string
           sort_order?: number
@@ -40,6 +44,8 @@ export type Database = {
           id?: string
           is_active?: boolean
           logo_url?: string | null
+          logo_url_en?: string | null
+          logo_url_mn?: string | null
           name_en?: string
           name_mn?: string
           sort_order?: number
